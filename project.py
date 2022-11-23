@@ -32,6 +32,11 @@ sns.countplot(x = credit_df['Occupation'], palette="mako")
 plt.xticks(rotation=90);
 plt.show()
 
+sns.scatterplot( x = "Annual_Income",
+                 y = "Num_of_Loan",
+                 data = credit_df,
+                 hue = "Credit_Score")
+plt.show()
 sns.countplot(x = credit_df['Credit_Score'],palette="mako")
 plt.xticks(rotation=45)
 plt.show() #Lots of customers have Standart Score
