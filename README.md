@@ -53,11 +53,35 @@ very likely performed better and secondly because it seemed a process too long a
 ### **Experimental Design**
 After building our models by calling the sklearn functions, we have performed the task of Hyperparameter tuning.
 Hyperparameters are the variables that determine the network structure and how the network is trained. 
-The process of Hyperparameter tuning has the goal of finding the best settings for the ML algorithm, that is 
-the setting of hyperparameters producing highest accuracy and lowest error rate. 
-To achieve this task we use the grid search algorithm which involves iterating between the tuning values and 
-testing their effects on performance.
-The optimisation process is repeated many times until no further improvement occurs.
+Thus, the process of Hyperparameter tuning has the goal of finding the best settings for the ML algorithm, that is 
+the setting of hyperparameters producing the highest accuracy and lowest error rate. 
+To achieve this task we use for each model the grid search algorithm.
+Grid search exhaustively enumerates all combinations of hyperparameters and evaluates each combination. 
+Depending on the available computational resources, the nature of the learning algorithm and size of the problem,
+each evaluation may take considerable time. Thus, the overall optimization process is time-consuming.
+#### K-Nearest Neighbours (KNN)
+In Knn, the choices of hyperparameters concerned: 
+- The number of neighbours: a value chosen among the set [3,5,8,10].
+- The weights: a value that can vary from "uniform", where all points in each neighborhood are weighted equally,
+to "distance", where closer neighbors will have a greater influence on a data point than further ones.
+- The distance metric: a set of distance metrics, where not all distance metrics are taken into account
+in order to reduce the computational time.
+
+  
+#### Kernel Support Vector Machine (Kernel SVM)
+In Kernel SVM, the choices of hyperparameters concerned:
+- The kernel,which specifies the kernel type to be used in the algorithm. 
+The choices are among ['linear', 'rbf', 'poly', 'sigmoid'].
+- The C parameter, which adds a 'penalty' for each misclassified data point. If c is small, the penalty for 
+misclassified points is low so the decision boundary has large margin while if c is large, the number of 
+misclassified examples are minimized due to high penalty.
+- max iterator: the limit of iterations. We set the value to 1500, so as to stop the iterations 
+before convergence (time issue)
+ 
+
+ 3. XGBOOST
+ 4. Classification and Regression Tree (CART)
+ 5. Artificial Neural Network (ANN)
 - Baseline(s): describe the method(s) that you used to compare your work to 
 - Evaluation Metrics(s): which ones did you use and why?
 
