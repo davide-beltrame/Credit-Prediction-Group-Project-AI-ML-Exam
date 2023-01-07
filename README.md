@@ -75,7 +75,7 @@ Depending on the available computational resources, the nature of the learning a
 each evaluation may take considerable time. Thus, the overall optimization process is time-consuming.
 
 ### K-Nearest Neighbours (KNN)
-In KNN, the choices of hyperparameters concerned are: 
+In KNN, the choices of hyperparameters are: 
 - The number of neighbours: a value chosen among the set [3,5,8,10].
 - The weights: a value that can vary from "uniform", where all points in each neighborhood are weighted equally,
 to "distance", where closer neighbors will have a greater influence on a data point than further ones.
@@ -83,8 +83,8 @@ to "distance", where closer neighbors will have a greater influence on a data po
 in order to reduce the computational time.
 
 ### Kernel Support Vector Machine (Kernel SVM)
-In Kernel SVM, the choices of hyperparameters concerned are:
-- The kernel,which specifies the kernel type to be used in the algorithm. 
+In Kernel SVM, we've taken into account 3 hyperparameters:
+- The kernel, which specifies the kernel type to be used in the algorithm. 
 The choices are among ['linear', 'rbf', 'poly', 'sigmoid'].
 - The C parameter, which adds a 'penalty' for each misclassified data point. If c is small, the penalty for 
 misclassified points is low so the decision boundary has large margin while if c is large, the number of 
@@ -93,9 +93,30 @@ misclassified examples are minimized due to high penalty.
 before convergence (time issue)
  
 
- 3. XGBOOST
- 4. Classification and Regression Tree (CART)
- 5. Artificial Neural Network (ANN)
+### XGBOOST
+XGBoost is a very powerful algorithm which provides a large range of hyperparameters. 
+However, because of the limited power of our computers and because of the huge time it would have taken 
+to tune all of them, we've decided to focus on the main ones:
+- The maximum depth, which defines the maximum depth of a tree (this value controls over-fitting,
+as higher depth will allow model to learn patterns very specific to a particular sample).
+- The learning rate, which makes the model more robust by shrinking the weights on each step. 
+In general, optimal values for the learning rate are in the range [0.1, 0.3]
+
+### Classification and Regression Tree (CART)
+To build the CART model, we've considered 3 hyperparameters in the tuning:
+- maximum depth: the maximum depth of the tree (recall that a higher tree is more likely to overfit)
+- minimum samples leaf: the minimum number of samples required to be at a leaf node
+- maximum features: the number of features to consider when looking for the best split 
+
+### Artificial Neural Network (ANN)
+In building the ANN model we've tuned:
+- The activation function, either 'logistic' or 'relu'.
+- The learning rate_init, which is the initial learning rate used. It controls the step-size in updating the weights
+It is important to state that among the hyperparameters we did not include any solver for weights optimization. 
+In particular, the default one - namely “adam”, which refers to a stochastic gradient-based optimizer,
+works perfectly fine with large datasets. 
+
+
 - Baseline(s): describe the method(s) that you used to compare your work to 
 - Evaluation Metrics(s): which ones did you use and why?
 
