@@ -76,6 +76,7 @@ each evaluation may take considerable time. Thus, the overall optimization proce
 In order to determine the best models in our results, we decided to choose accuracy.
 
 ### **3.1) Hyperparameter tuning**
+
 ### K-Nearest Neighbours (KNN)
 In KNN, the choices of hyperparameters are: 
 - The number of neighbours: a value chosen among the set [3,5,8,10].
@@ -119,15 +120,40 @@ works perfectly fine with large datasets.
 
 ## **4) Results**
 
-Confusion matrices
+### **Confusion matrices**
 
-Accuracy
+### K-Nearest Neighbours (KNN)
+![cm_KNN](/images/cm_KNN.png)
 
-Time complexity
+### Kernel Support Vector Machine (Kernel SVM)
+![cm_kSVM](/images/cm_kSVM.png)
 
-- Main finding(s): report your final results and what you might conclude from your work 
-- Include at least one placeholder figure and/or table for communicating your findings 
-- All the figures containing results should be generated from the code.
+### XGBoost
+![cm_xgb](/images/cm_xgb.png)
+
+### Classification and Regression Tree (CART)
+![cm_CART](/images/cm_CART.png)
+
+### Artificial Neural Network (ANN)
+![cm_ANN](/images/cm_ANN.png)
+
+### **Accuracy**
+- KNN: ~ 
+- Kernel SVM: ~ 
+- XGBoost: ~ 
+- CART: ~ 0.67
+- ANN: ~ 
+
+![accuracy](/images/accuracy.png)
+
+### **Time complexity**
+- KNN: ~ 1500 seconds (25 min)
+- Kernel SVM: ~ 2700 seconds (45 min)
+- XGBoost: ~ 5300 seconds (90 min)
+- CART: ~ 100 seconds (<2 min)
+- ANN: ~ 1500 seconds (25 min)
+
+
 
 ## **5) Conclusions**
 - Summarize in one paragraph the take-away point from your work.
