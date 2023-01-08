@@ -6,11 +6,13 @@
 - Demetrio Francesco Cardile, 267281
 - Mariasole Mohn, 268651
 
+
 ## **1) Introduction**
 We have received bank details and credit-related data from the greatest financial company in the world: 
 we need to help develop targeted products for their users by dividing them into 
 three credit score brackets: Poor, Standard and Good. 
 In the following sections we will explain how we thought of an efficient data-driven solution to tackle this problem.
+
 
 ## **2) Methods**
 
@@ -62,6 +64,7 @@ very likely performed better and secondly because it seemed a process too long a
 
 Furthermore, we favoured Kernel SVM over SVM because we cannot assume linearly separable data points (a necessary condition for using appropriately linear SVM).
 
+
 ## **3) Experimental Design**
 After building our models by calling the *sklearn* functions, we have performed the task of **hyperparameter tuning**.
 Hyperparameters are the hidden (not human-interpretable) variables that determine the network structure and how the network is trained. 
@@ -75,7 +78,7 @@ each evaluation may take considerable time. Thus, the overall optimization proce
 ### **3.1) Evaluation metrics**
 In order to determine the best models in our results, we decided to choose accuracy.
 
-### **3.1) Hyperparameter tuning**
+### **3.2) Hyperparameter tuning**
 
 ### K-Nearest Neighbours (KNN)
 In KNN, the choices of hyperparameters are: 
@@ -138,10 +141,10 @@ works perfectly fine with large datasets.
 ![cm_ANN](/images/cm_ANN.png)
 
 ### **Accuracy**
-- KNN: ~ 
-- Kernel SVM: ~ 
-- XGBoost: ~ 
-- CART: ~ 0.67
+- KNN: ~ 0.76
+- Kernel SVM: ~ 0.59
+- XGBoost: ~ 0.77
+- CART: ~ 0.68
 - ANN: ~ 
 
 ![accuracy](/images/accuracy.png)
@@ -151,8 +154,7 @@ works perfectly fine with large datasets.
 - Kernel SVM: ~ 2700 seconds (45 min)
 - XGBoost: ~ 5300 seconds (90 min)
 - CART: ~ 100 seconds (<2 min)
-- ANN: ~ 1500 seconds (25 min)
-
+- ANN: ~ 
 
 
 ## **5) Conclusions**
