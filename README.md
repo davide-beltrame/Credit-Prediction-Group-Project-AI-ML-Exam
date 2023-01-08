@@ -27,7 +27,7 @@ Before running our project, install Python 3 and execute the following commands 
 > `pip install python-time`  
 
 ### **2.2) Workflow**
-Through exploratory data analysis we perform a deep analysis of the dataset, highlighting some interesting features, 
+Through **exploratory data analysis** we perform a deep analysis of the dataset, highlighting some interesting features, 
 and trying to extrapolate as much information as possible from data.
 First of all, we get a general understanding of the dataset using ad hoc *pandas* methods in order to discover its size,
 the type of variables that it contains and the number of null values.
@@ -44,7 +44,7 @@ Before any consideration over the methods we are going to use for this classific
 we remark the importance of splitting our data into three different sets:
 - Training set: as its name suggests, it is used to train the classifier. It makes up for 75% of the data points.
 - Validation set. Normally, we would use this to evaluate our model and tune our hyperparameters; but in our approach
-to the problem, we tune them in the training phase and we test once on the test set.
+to the problem, we tune them in the training phase (through **cross-validation**) and we test once on the test set.
 - Test set. 25% of the data points are in it.
 
 In order to choose our models, we had to make a choice among the classification methods we have studied:
@@ -57,13 +57,21 @@ In order to choose our models, we had to make a choice among the classification 
 - XGBoost
 
 We excluded Logistic Regression because the default model is limited to binary classification problems. 
-By searching on the web, we found out that an option could have been to transform the problem into a 
+By searching the web, we found out that an option could have been to transform the problem into a 
 multiple binary classification problem. 
 Nevertheless, we decided not to proceed in this way. Firstly because other more complex models would have 
 very likely performed better and secondly because it seemed a process too long and complex.
 
 Furthermore, we favoured Kernel SVM over SVM because we cannot assume linearly separable data points (a necessary condition for using appropriately linear SVM).
 
+Finally, we excluded Random Forests because of time complexity constraints: it would take a considerably long amount of time to build a large number of trees.
+
+To recap what we chose:
+- **KNN** is very easy to tune and has high interpretability, moreover it performs quite well in terms of accuracy. Its only drawback is that its time complexity is not the lowest.
+- **Kernel SVM** is not interpretable, but it performs similarly to KNN in terms of metrics and time complexity. It is also easy to tune.
+- **CART** has among its advantages a very good time complexity and high interpretability, but we will see that it will not be the best performing.
+- **ANN** is, by definition, not human-interpretable, but performs very well accuracy-wise and its tuning effort is relatively minimal.
+- **XGBoost** exploits a combination of methods (CART, Random Forest, boosting) that makes it very easy to tune and very well performing, despite being quite time-consuming to execute.
 
 ## **3) Experimental Design**
 After building our models by calling the *sklearn* functions, we have performed the task of **hyperparameter tuning**.
@@ -76,7 +84,8 @@ Depending on the available computational resources, the nature of the learning a
 each evaluation may take considerable time. Thus, the overall optimization process is time-consuming.
 
 ### **3.1) Evaluation metrics**
-In order to determine the best models in our results, we decided to choose accuracy.
+In order to determine the best models in our results, we decided to choose accuracy, which is defined as:
+(TP+TN)/N. In other words, the true positives plus the true negatives (the number of correctly identified observations) divided by the total number of observations. We chose this metric because we noticed that the target variable is represented by classes (*Standard*, *Good* and *Bad*) that are in the same order of magnitude, thus making the dataset balanced enough.
 
 ### **3.2) Hyperparameter tuning**
 
@@ -145,7 +154,7 @@ works perfectly fine with large datasets.
 - Kernel SVM: ~ 0.59
 - XGBoost: ~ 0.77
 - CART: ~ 0.68
-- ANN: ~ 
+- ANN: ~ 0.74
 
 ![accuracy](/images/accuracy.png)
 
@@ -154,8 +163,9 @@ works perfectly fine with large datasets.
 - Kernel SVM: ~ 2700 seconds (45 min)
 - XGBoost: ~ 5300 seconds (90 min)
 - CART: ~ 100 seconds (<2 min)
-- ANN: ~ 
+- ANN: ~ 2400 seconds (40 min)
 
+![times](/images/times.png)
 
 ## **5) Conclusions**
 When we had to choose the best machine learning model among our candidates, we had to define what 
@@ -164,11 +174,15 @@ First of all, we should adapt our choices based on the demand of our company.
 It might be necessary to have a fast or interpretable model rather than a slow one with higher performance.
 In our case there is no mention regarding interpretability or speed, we were just asked 
 to design an efficient data-driven solution.
-That being the case, we've chosen as best model the one having the higher accuracy: XGBoost. 
-We can notice that the performance of KNN is almost the same as XGBoost and can be achieved 
+That being the case, we have chosen as best model the one having the higher accuracy: XGBoost. 
+We noticed that the performance of KNN is almost the same as XGBoost and can be achieved 
 with less than 1/3 of the time. 
 Thus, we could propose to our boss both solutions and see if time can be considered as a
 relevant factor to take into account.
 
+Overall, we were surprised by some models in terms of performance (time-wise and accuracy-wise):
+- We expected Kernel SVM to have a better time-complexity than KNN, but it turns out that the latter is almost twice as fast.
+- Again, Kernel SVM delivers quite badly, this time in terms of accuracy, which is noticeably worse than the one we get from KNN
 
-- Include one paragraph to explain what questions may not be fully answered by your work as well as natural next steps for this direction of future work
+Perhaps the natural next steps for this work in the future would be testing different models (such as Random Forest) on more powerful machines or with less stringent time constraints, as we limited our approach to models that are time efficient on personal computers.
+
