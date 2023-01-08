@@ -158,5 +158,17 @@ works perfectly fine with large datasets.
 
 
 ## **5) Conclusions**
-- Summarize in one paragraph the take-away point from your work.
+When we had to choose the best machine learning model among our candidates, we had to define what 
+"best" meant in our case.
+First of all, we should adapt our choices based on the demand of our company. 
+It might be necessary to have a fast or interpretable model rather than a slow one with higher performance.
+In our case there is no mention regarding interpretability or speed, we were just asked 
+to design an efficient data-driven solution.
+That being the case, we've chosen as best model the one having the higher accuracy: XGBoost. 
+We can notice that the performance of KNN is almost the same as XGBoost and can be achieved 
+with less than 1/3 of the time. 
+Thus, we could propose to our boss both solutions and see if time can be considered as a
+relevant factor to take into account.
+
+
 - Include one paragraph to explain what questions may not be fully answered by your work as well as natural next steps for this direction of future work
