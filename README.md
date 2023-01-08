@@ -73,6 +73,12 @@ To recap what we chose:
 - **ANN** is, by definition, not human-interpretable, but performs very well accuracy-wise and its tuning effort is relatively minimal.
 - **XGBoost** exploits a combination of methods (CART, Random Forest, boosting) that makes it very easy to tune and very well performing, despite being quite time-consuming to execute.
 
+### **2.3) Feature engineering**
+
+1. In order to standardize (to a number) non-numerical labels, we use *LabelEncoder*;
+2. Then, *StandardScaler* is applied to numerical labels and features by removing the mean and scaling to unit variance (from scikit-learn documentation);
+3. In the end, *OneHotEncoder* converts those initially categorical values to binary features (a series of columns in which the feature corresponds to the one having a 1 instead of a 0).
+
 ## **3) Experimental Design**
 After building our models by calling the *sklearn* functions, we have performed the task of **hyperparameter tuning**.
 Hyperparameters are the hidden (not human-interpretable) variables that determine the network structure and how the network is trained. 
@@ -174,11 +180,11 @@ First of all, we should adapt our choices based on the demand of our company.
 It might be necessary to have a fast or interpretable model rather than a slow one with higher performance.
 In our case there is no mention regarding interpretability or speed, we were just asked 
 to design an efficient data-driven solution.
-That being the case, we have chosen as best model the one having the higher accuracy: XGBoost. 
-We noticed that the performance of KNN is almost the same as XGBoost and can be achieved 
-with less than 1/3 of the time. 
-Thus, we could propose to our boss both solutions and see if time can be considered as a
-relevant factor to take into account.
+That being the case, we have chosen as best model the one having the higher average accuracy: **XGBoost**. 
+We noticed that the performance of **KNN** is almost the same as XGBoost and can be achieved 
+with less than 1/3 of the time.   
+Thus, we could propose to our boss both solutions (KNN for time complexity and accuracy, XGBoost strictly for accuracy) and see if time can be considered as a relevant factor to take into account.
+
 
 Overall, we were surprised by some models in terms of performance (time-wise and accuracy-wise):
 - We expected Kernel SVM to have a better time-complexity than KNN, but it turns out that the latter is almost twice as fast.
