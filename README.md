@@ -137,6 +137,10 @@ In particular, the default one - namely “adam”, which refers to a stochastic
 works perfectly fine with large datasets. 
 
 ## **4) Results**
+As we will see from the target variable (Credit Score) results in the main notebook, 
+we expect most of the users to be labelled as Standard credit score users, followed by Poor and Good.  
+As it turns out, this is the result our models are the closest to; 
+the accuracy of the result and the time complexity of the model is also shown below.
 
 ### **Confusion matrices**
 
